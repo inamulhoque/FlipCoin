@@ -2,8 +2,7 @@
 
 win=0
 loss=0
-
-for (( i=0; i<10; i++ ))
+while [[ $win -le 20 && $loss -lt 21 ]]
 do
 	val=$((RANDOM%2))
 	if [ $val -eq 1 ]
@@ -13,6 +12,18 @@ do
 		((loss++))
 	fi
 done
-echo "Total 10 number of toss"
 echo "Head wins : $win"
 echo "Tail wins : $loss"
+
+if [[ $win -gt $loss ]]
+then
+	echo "Head Wins by :"
+	echo "$(($win - $loss))"
+elif [[ $loss -gt $win ]]
+then
+	echo "Tail wins by :"
+	echo "$(($loss - $win))"
+elif [[ $win -eq $loss ]]
+then
+	echo "Tie"
+fi
